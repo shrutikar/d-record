@@ -64,7 +64,7 @@ def get_all_tweets_and_annotations(gaz_name):
     all_tweets_and_annotations = list()
     print gaz_name
     #keys = list()
-    with open("_Data/Brat_Annotations/"+gaz_name+"/"+gaz_name.title()+"FloodRelief_C.json") as c:
+    with open("_Data/"+gaz_name.title()+"FloodRelief_C.json") as c:
         for line in c:
             d=json.loads(line)
 	    if gaz_name=="houston":
