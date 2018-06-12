@@ -1,9 +1,13 @@
+"""#############################################################################
+Copyright 2018 Shruti Kar, shruti@knoesis.org
+This software is released under the GNU Affero General Public License (AGPL)
+v3.0 License.
+#############################################################################"""
+
 import flask
 from elasticsearch import Elasticsearch
 from flask import Flask, request, send_from_directory, render_template_string, render_template, jsonify, Response, redirect, url_for
-import requests
-import json, os
-import Geohash, json, os
+import requests, json, os, Geohash
 import collections,operator
 from collections import defaultdict
 import math, decimal
@@ -1270,5 +1274,3 @@ def check_selected():
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0', port=8088)
-    # interpolate_try()
-    # intp() 
