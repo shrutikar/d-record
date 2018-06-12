@@ -71,7 +71,7 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
             #resizeMap { top: 5em; }
             #instructions {
                 position: absolute;
-                margin-left: 30%;
+                margin-left: 79%;
                 margin-top: 30%;
                 height: 30%;
                 width: 20%;
@@ -207,7 +207,6 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
                 top: 10px;
                 right: 10px;
                 border-radius: 3px;
-                width: 120px;
                 border: 1px solid rgba(0,0,0,0.4);
                 font-family: 'Open Sans', sans-serif;
             }
@@ -889,7 +888,7 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
                         $('instructions').empty();
                         var instructions = document.getElementById('instructions');
                         var steps = data.routes[route_no].legs[0].steps;
-                        instructions.innerHTML='<p style="color:blue" >' + ph + '</p>';
+                        instructions.innerHTML='<p style="color:blue;background-color: white;" >' + ph + '</p>';
                         steps.forEach(function(step) {
                             instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
                         });
@@ -1180,7 +1179,7 @@ def read_data(dataset):
             s.append(es.get(index=dataset+'-tweets', doc_type='people', id=i)["_source"])
         except:
             break
-    # print s
+    print i
 
     p=[]
     for c in range(9000):
@@ -1188,14 +1187,14 @@ def read_data(dataset):
             p.append(es.get(index=dataset+'1', doc_type='locs', id=c)["_source"])
         except:
             break
-
+    print c
     crowd=[]
     for c in range(9000):
         try:
             crowd.append(es.get(index=dataset+'-crowd', doc_type='crowd', id=c)["_source"])
         except:
             break
-
+    print c
     shelter=list()
     rescue=list()
     infra=list()
