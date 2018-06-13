@@ -27,7 +27,6 @@ Disaster Response
 Social Media
 """
 
-
 def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,other_sh,other_res):
 
     with open("_Data/OSM_features_icons_dict.json") as f:
@@ -306,7 +305,7 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
                     </div>
                 </div>
                 <div id="thumbnailwrapper">
-                    <form name="myForm" action="/data" method="post" onsubmit=""> 
+                    <form name="myForm" action="/data_set" method="post" onsubmit=""> 
                     <div class="radio">
                       <label><input type="radio" name="dataset" value="chennai"> Chennai<span></span></label>
                       <label><input type="radio" name="dataset" value="houston"> Houston<span></span></label>
@@ -482,10 +481,6 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
                 "data": """+photon_rescue+"""
             });
             
-            map.addSource("heat", {
-                "type": "geojson",
-                "data": '/test'
-            });
             map.addSource("other-shelter", {
                 "type": "geojson",
                 "data": """+other_sh+"""
@@ -600,7 +595,7 @@ def make_map(centroid,shelter_data,rescue_data,photon_shelter,photon_rescue,othe
             });
             map.addSource('trees', {
                 type: 'geojson',
-                data: '/test'
+                data: '/flood'
             });
             // add heatmap layer here
             // add circle layer here
@@ -970,10 +965,8 @@ def interpolate_try(crds,start):
             long2 = float(crds[i][0])
             lat2 = float(crds[i][1])
         elif i==(len(crds)-1):
-
             break
         else:
-
             tp=i+1
             long1 = float(crds[i][0])
             lat1 = float(crds[i][1])
@@ -987,8 +980,6 @@ def interpolate_try(crds,start):
         ed.append(long2)
         di=great_circle(st, ed).kilometers
         arb=di / 0.02
-        # print "di",di,arb
-
         ass = get_coords(lat1, long1, lat2, long2, arb)
 
         for a in ass:
@@ -1016,15 +1007,11 @@ def get_dist(st,fl):
         distance=great_circle(s, f).kilometers
         cod.append(e)
         points[i]=distance
-    # od = collections.OrderedDict(sorted(points.items()))
     sorted_x = sorted(points.items(), key=operator.itemgetter(1))
-    # print sorted_x
-    # for k, v in od.iteritems(): print k, v
     return sorted_x,cod
 
 @application.route('/find_match', methods=['GET','POST'])
 def find_match():
-    # interpolate_try()
     start_lat = request.args.get('start_1')
     start_lon = request.args.get('start_0')
     cl = request.args.get('cl')
@@ -1047,19 +1034,13 @@ def find_match():
     fl=list()
 
     for e in d["features"]:
-        # final_lon=e["geometry"]["coordinates"][0]
-        # final_lat=e["geometry"]["coordinates"][1]
         final=e["geometry"]["coordinates"]
         fl.append(final)
     if o:
         for e in o["features"]:
-            # final_lon=e["geometry"]["coordinates"][0]
-            # final_lat=e["geometry"]["coordinates"][1]
             final=e["geometry"]["coordinates"]
             fl.append(final)
-
     dist=get_dist(st,fl)
-    # new_dist=route_dist(st,fl)
     sorted_dist=dist[0]
     new_cord=dist[1]
     final_route=None
@@ -1073,7 +1054,6 @@ def find_match():
         new_lat= new_cord[index][1]
         response=requests.get("https://api.mapbox.com/directions/v5/mapbox/driving-traffic/"+str(start_lon)+","+str(start_lat)+";"+str(new_lon)+","+str(new_lat)+"?geometries=geojson&access_token=pk.eyJ1IjoiaGFsb2xpbWF0IiwiYSI6ImNqZWRrcjM2bTFrcWEzMmxucDQ4N2kxaDMifQ.Buarvvdqz7yJ1O25up2SzA")
         all_data=json.loads(response.content)
-        # print i,all_data
         try:
             for r in range(len(all_data['routes'])):
                 route = all_data['routes'][r]['geometry']
@@ -1101,7 +1081,6 @@ def find_match():
         for e in d["features"]:
             if e["geometry"]["coordinates"]==end:
                 new_name=e["properties"]["name"]
-                # print new_name
                 break
     if new_name=="":
         j= json.dumps({"end":end,"route_no":route_no,"phone":"not available"});
@@ -1120,22 +1099,14 @@ def find_match():
         except:
             all_data="not available"
         j= json.dumps({"end":end,"route_no":route_no,"phone":all_data});
-
-
-    # print j
     return j
 
 def flood_check(cordin,strt):
-    # print len(cordin)
     cordin = interpolate_try(cordin,strt)
-    # print cordin
-    # print len(cordin)
     f=None
     for e in cordin:
-        # print e
         ln=e[0]
         lt = e[1]
-        # print type(ln),lt
         f=None
         n_end=list()
         n_end.append(lt)
@@ -1146,18 +1117,16 @@ def flood_check(cordin,strt):
             x=geohash_dict[geohash]
         else:
             x="No Satellite Data!"
-        # print x
         if str(x)=="True" and dis>0.5:
             # print "entered true"
             f="flooded route"
             break
-    # print f
     if f=="flooded route":
         return f
     else:
         return "route safe"
 
-@application.route("/data", methods=['GET','POST'])
+@application.route("/data_set", methods=['GET','POST'])
 def get_data():
     dataset = request.form['dataset']
     read_data(dataset)
@@ -1166,8 +1135,7 @@ def get_data():
 
 
 def read_data(dataset):
-# dataset="houston"
-    # dataset=request.args.get('dataset')
+
     global sh,rs,inf,ph_sh,ph_rs,ph_inf,other_s,other_r,other_i,centroid
 
     if dataset=="houston":
@@ -1183,22 +1151,18 @@ def read_data(dataset):
             s.append(es.get(index=dataset+'-tweets', doc_type='people', id=i)["_source"])
         except:
             break
-    print i
-
     p=[]
     for c in range(9000):
         try:
             p.append(es.get(index=dataset+'1', doc_type='locs', id=c)["_source"])
         except:
             break
-    print c
     crowd=[]
     for c in range(9000):
         try:
             crowd.append(es.get(index=dataset+'-crowd', doc_type='crowd', id=c)["_source"])
         except:
             break
-    print c
     shelter=list()
     rescue=list()
     infra=list()
@@ -1249,7 +1213,6 @@ def index(gaz_name):
         return options
     
     gaz_name=gaz_name.lower()
-    # print "came to index"
 
     read_data(gaz_name)
 
@@ -1264,7 +1227,7 @@ def index(gaz_name):
     return map
 
 
-@application.route('/test', methods=['GET','POST'])
+@application.route('/flood', methods=['GET','POST'])
 def check_selected():
     with open("_Data/chennai.geojson") as f:
         data = json.load(f)
