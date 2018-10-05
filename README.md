@@ -1,7 +1,7 @@
 # d-record
 Disaster Response and Relief Coordination Pipeline
 
-[![Video text](https://www.youtube.com/embed/01vdzYmS-ck)](https://www.youtube.com/embed/01vdzYmS-ck)
+[![Video text](https://img.youtube.com/vi/01vdzYmS-ck/maxresdefault.jpg)](https://www.youtube.com/watch?v=01vdzYmS-ck)
 
 
 # Event Ontology
