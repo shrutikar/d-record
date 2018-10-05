@@ -1,6 +1,8 @@
 # d-record
 Disaster Response and Relief Coordination Pipeline
 
+Click the image below for a demo of the tool.
+
 [![Video text](https://img.youtube.com/vi/01vdzYmS-ck/maxresdefault.jpg)](https://www.youtube.com/watch?v=01vdzYmS-ck)
 
 
