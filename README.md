@@ -13,11 +13,6 @@ The Event Ontology can be found [in this folder](https://drive.google.com/drive/
 
 If you do make use of D-record or any of its components please cite the following publication:
 
-    Hussein S. Al-Olimat, Krishnaprasad Thirunarayan, Valerie Shalin, and Amit Sheth. 2018. 
-    Location Name Extraction from Targeted Text Streams using Gazetteer-based Statistical Language Models. 
-    In Proceedings of the 27th Internationl Conference on Computational Linguistics (COLING 2018), 
-    pages 700–710. Association for Computational Linguistics.
-    
     Kar, S., Al-Olimat, HS . Thirunarayan, K., Shalin, V., Sheth, A., and Parthasarathy, S. 
     "D-record: Disaster Response and Relief Coordination Pipeline". In Proceedings of the ACM 
     SIGSPATIAL International Workshop on Advances in Resilient and Intelligent Cities (ARIC 2018). 
