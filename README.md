@@ -13,7 +13,7 @@ The Event Ontology can be found [in this folder](https://drive.google.com/drive/
 
 If you do make use of D-record or any of its components please cite the following publication:
 
-    Kar, S., Al-Olimat, HS . Thirunarayan, K., Shalin, V., Sheth, A., and Parthasarathy, S. 
+    Kar, S., Al-Olimat, HS., Thirunarayan, K., Shalin, V., Sheth, A., and Parthasarathy, S. 
     "D-record: Disaster Response and Relief Coordination Pipeline". In Proceedings of the ACM 
     SIGSPATIAL International Workshop on Advances in Resilient and Intelligent Cities (ARIC 2018). 
     Seattle, Washington, USA. ACM, 2018.
