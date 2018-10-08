@@ -30,7 +30,7 @@ If you do make use of D-record or any of its components please cite the followin
                   Resilient and Intelligent Cities (ARIC 2018)",
       year = "2018",
       publisher = "Association for Computing Machinery",
-      location = "Seattle, Washington USA"
+      location = "Seattle, Washington, USA"
     }
 
 
