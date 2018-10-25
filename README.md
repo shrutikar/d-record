@@ -1,5 +1,7 @@
 # d-record
-Disaster Response and Relief Coordination Pipeline   [Link to SIGSPATIAL workshop Paper](http://knoesis.org/sites/default/files/D_record__Disaster_Response_and_Relief_Coordination_Pipeline.pdf)
+Disaster Response and Relief Coordination Pipeline   
+
+[Link to SIGSPATIAL workshop Paper](http://knoesis.org/sites/default/files/D_record__Disaster_Response_and_Relief_Coordination_Pipeline.pdf)
 
 Click the image below for a demo of the tool.
 
