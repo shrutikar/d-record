@@ -1,5 +1,5 @@
 # d-record
-Disaster Response and Relief Coordination Pipeline
+Disaster Response and Relief Coordination Pipeline [paper](http://knoesis.org/sites/default/files/D_record__Disaster_Response_and_Relief_Coordination_Pipeline.pdf)
 
 Click the image below for a demo of the tool.
 
